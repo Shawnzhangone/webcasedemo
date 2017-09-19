@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+	<head>
+    	<meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width,initial-scale=1 user-scalable=0"/>
+    	<title>原生js开发ajax数据分页缓存</title>
+	</head>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		ul{
+			list-style: none;
+		}
+		li {
+			float: left;
+		}
+		a {
+			text-decoration: none;
+		}
+		nav {
+			margin: 10px 0;
+			height: 20px;
+		}
+		nav li {
+			width: 92px;
+			height: 24px;
+			margin-left: 20px;
+			text-align: center;
+		}
+		nav li a {
+	        color: #000;
+	        display: inline-block;
+	        font-size: 16px;
+	        background-color: #e92322;
+	        padding: 10px 20px;
+	        border-radius: 5px;
+	        margin: 4px 20px 0 0;
+	    }
+		.wrap{
+			width: 420px;
+			height: 500px;
+			margin: 50px auto;
+			border: 1px solid #000;
+			box-shadow: 1px 1px 5px #888;
+			position: relative;
+			background-color: #f8f8f8;
+		}
+		.content a {
+			display: block;
+			height: 40px;
+			width: 86%;
+			margin: 12px 11px;
+			padding-left: 8px;
+			padding-right: 28px;
+			line-height: 40px;
+			color: #000;
+			border: 1px solid #888;
+			background-color: #fff;
+			box-shadow: 1px 1px 5px #bdbdbd;
+			position: relative;
+			overflow: hidden;
+			
+		}
+		.pr{
+			position: absolute;
+			right: 12px;
+			top: 0px;
+		}
+		.page{
+			position: absolute;
+			bottom: 10px;
+			left: 0;
+		}
+		.flex_row li {
+			width: 28px;
+			height: 28px;
+			text-align: center;
+			line-height: 28px;
+			border: 1px solid #888;
+			box-shadow: 1px 1px 5px #bdbdbd;
+			margin: 10px 20px;
+		}
+		@media (max-width: 512px){
+			.wrap {
+				width: 98%;
+				margin-top: 32px;
+			}
+			.content a {
+				margin-left: 5px;
+			}
+			.flex_row li {
+				margin: 10px 15px;
+			}	
+		}
+	</style>
+	<body>
+		<nav>
+			<ul>
+				<li><a href="">返回</a></li>
+				<li><a href="http://www.amxzhang.com/">首页</a></li>
+			</ul>					
+		</nav>
+		<div class="wrap flex_column">
+			<div class="content flex_column"></div>
+
+			<div class="page">
+				<ul class="flex_row">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>4</li>
+					<li>5</li>
+					<li>6</li> 
+				</ul>
+			</div>
+		</div>
+		<script>
+		/*	ajax 数据交互
+				1.创建数据通道
+				2.打开数据通道
+					1.url地址
+					2.data数据 参数 :账号  密码
+					3.open ：method GET
+							url
+							async  true
+				数据交互			
+					4.send
+					5.检测数据通道状态	0 为初始化，1 调用了send()发送请求 ，2 send载入完成 ，3 解析响应内容，4 响应内容解析完成 回调数据
+				3.数据渲染
+					1.分析数据 取得数据
+					2.for循环 用ES6文本域 拼接节点字符串
+					3.拼接好的文本添加到 .content中 innerHTML
+				4.分页处理
+		*/
+		var oWrap = document.querySelector(".wrap")
+		var oCont = document.querySelector(".content");
+		var page = 1;//初始化页码
+		var pageli = document.querySelectorAll(".page li");
+		var cache = {};//初始化缓存池
+		var wrapWidth = document.getElementsByTagName(".wrap").offsetWidth;
+		getJson();
+		pageList();
+		function pageList(){
+			oWrap.addEventListener('click',function(e){//优化
+				if(e.target.tagName == 'LI'){
+					page = e.target.innerHTML + 1;
+						if(page in cache){
+							//console.log("数据已经缓存"+ page);
+							showPage(cache[page]);//渲染已经存储数据
+						}
+						else{
+							getJson();
+						}
+				}
+			},false);
+			/*for(let i = 0,len = pageli.length; i < len; i++){
+				(function(i){//匿名函数立即执行
+					pageli[i].onclick = function(){
+						page = i + 1;
+						if(page in cache){
+							//console.log("数据已经缓存"+ page);
+							showPage(cache[page]);//渲染已经存储数据
+						}
+						else{
+							getJson();
+						}
+					}
+					
+				})(i);
+				
+			}*/
+		}
+
+		function showPage(dataList){
+			var str = '';
+			var length = dataList.length;
+			for (var i = 0; i < length; i++) { //模板拼接
+				str += `<a href="${dataList[i].url}" class="items flex_row load">
+				<div class="img"><img src="" alt=""></div>
+				<div class="bd">
+					<p class="label">${dataList[i].title}</p>
+				</div>
+				<div class="pr">&gt;</div>
+			</a>`
+			};
+			oCont.innerHTML = str;
+		}
+		function getJson() {
+			//console.time('shuju');
+			var xmlHttp = new XMLHttpRequest();
+			var url = 'https://route.showapi.com/181-1';
+			var params = [];
+			var sendData = {
+				showapi_appid:'39602',
+				showapi_sign:'fedc406642bb42ad98344aed31c1015e',
+				page: page,
+				num: 8 
+			}
+			for(var key in sendData){
+				params.push(key + '=' + sendData[key]);//json添加到数组
+			}
+			var postData = params.join('&');//拼接我字符串	
+			xmlHttp.open('GET',url+'?'+postData,true);//https://route.showapi.com/181-1?showapi_appid=30603&showapi_sign=576ED26FD9388C52E967760E63DE73B3&page=1&num=8
+			xmlHttp.send(null);//发送数据
+			xmlHttp.onreadystatechange = function(){
+				//console.log(xmlHttp.readyState);
+				if(xmlHttp.readyState == 4 && xmlHttp.status == 200){
+					var result = JSON.parse(xmlHttp.response);
+					//console.log(result);
+					var dataList = result.showapi_res_body.newslist;
+					showPage(dataList);
+					cache[page] = dataList;
+				}
+				
+			}
+			//console.timeEnd('shuju')
+		}
+			
+		</script>
+	</body>
+
+</html>

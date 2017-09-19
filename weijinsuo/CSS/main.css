@@ -1,0 +1,331 @@
+
+
+/*å…¬å…±æ ·å¼*/
+body {
+    font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+    height: 1000px;
+}
+
+header, section, footer {
+}
+
+@font-face {
+    font-family: 'weijinsuo';
+    src: url('../font/MiFie-Web-Font.eot') format('embedded-opentype'), url('../font/MiFie-Web-Font.svg') format('svg'), url('../font/MiFie-Web-Font.ttf') format('truetype'), url('../font/MiFie-Web-Font.woff') format('woff');
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+    font-family: weijinsuo;
+    font-style: normal;
+}
+
+/*å¤´éƒ¨åŒºåŸŸ*/
+#header .topbar {
+    height: 40px;
+    border-bottom: 1px solid #c0c0c0;
+    text-align: center;
+    line-height: 38px;
+}
+
+.container .row div {
+    font-size: 11px;
+    color: #888;
+}
+
+#header .container .row > div + div {
+    border-left: 1px solid #c0c0c0;
+}
+
+#header a {
+    color: #888;
+}
+
+#header a:hover {
+    text-decoration: none;
+}
+
+.icon-mobilephone::before {
+    content: "\e908";
+    font-size: 13px;
+}
+
+.icon-telephone::before {
+    content: "\e909";
+    font-size: 13px;
+}
+
+#header .sign {
+    color: #fff;
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #E92322;
+    border-radius: 3px;
+    line-height: 1.5;
+}
+
+.login {
+    padding: 5px 10px;
+}
+
+.mobile-link img {
+    position: absolute;
+    top: 26px;
+    left: 50%;
+    margin-left: -60px;
+    display: none;
+    z-index: 1001;
+}
+
+.mobile-link:hover img {
+    display: block;
+}
+
+.icon-logo::before {
+    content: "\e93e";
+}
+
+.icon-icon::before {
+    content: "\e920";
+}
+
+#header .icon-icon {
+    color: #E92322;
+    font-size: 50px;
+    line-height: 50px;
+    vertical-align: middle;
+}
+
+#header .icon-logo {
+    color: #333;
+    font-size: 32px;
+    line-height: 50px;
+    vertical-align: middle;
+}
+
+
+/*è½®æ’­å›¾åŒºåŸŸ*/
+
+#main-slider > .carousel-inner > .item {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+#main-slider > .carousel-inner > .item > .s-link {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#main-slider > .carousel-inner > .item > img {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    #main-slider > .carousel-inner > .item {
+        height: 410px;
+    }
+}
+
+/*ç‰¹è‰²åŒºåŸŸ*/
+
+#tese {
+    margin-top: 50px;
+    border-bottom: 1px solid #c0c0c0;
+}
+#tese > .container > .row > .item {
+    margin: 20px 0;
+}
+#tese > .container > .row > .item .media-left {
+    line-height: 42px;
+}
+#tese > .container > .row > .item i {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    font-size: 40px;
+}
+.icon-uniE907:before {
+    content: "\e907";
+}
+.icon-uniE903:before {
+    content: "\e903";
+}
+.icon-uniE904:before {
+    content: "\e904";
+}
+.icon-uniE905:before {
+    content: "\e901";
+}
+.icon-uniE906:before {
+    content: "\e906";
+}
+.icon-uniE908:before {
+    content: "\e908";
+}
+
+#tese a:hover {
+    text-decoration: none;
+}
+
+/*ç«‹å³é¢„çº¦*/
+
+#ljyy {
+    padding: 20px 0;
+    border-bottom: 1px solid #c0c0c0;
+}
+#ljyy .container p {
+    font-size: 14px;
+    margin-bottom: 0;
+}
+#ljyy .container p a {
+    color: rgb(136,136,136);
+}
+#ljyy .container p a:hover {
+    text-decoration: none;
+}
+#ljyy .container .pull-left span {
+    color: #e92322;
+}
+#ljyy .container .pull-left a {
+    color: #e92322;
+    border-bottom: 1px dashed #e92322;
+}
+.icon-uniE905:before {
+    content: "\e905";
+    margin-right: 5px;
+}
+
+
+
+
+
+
+    /*bootstrapæ‰©å±•*/
+
+.navbar-weijinsuo {
+    background-color: #fff;
+    border-color: #e7e7e7;
+    margin-bottom: 0;
+}
+
+.navbar-weijinsuo .navbar-brand {
+    color: #777;
+    line-height: 50px;
+    height: 80px;
+}
+
+.navbar-weijinsuo .navbar-brand:hover,
+.navbar-weijinsuo .navbar-brand:focus {
+    color: #5e5e5e;
+    background-color: transparent;
+}
+
+.navbar-weijinsuo .navbar-text {
+    color: #777;
+}
+
+.navbar-weijinsuo .navbar-nav > li > a {
+    color: #777;
+    line-height: 48px;
+    font-size: 14px;
+}
+
+.navbar-weijinsuo .navbar-nav > li > a:hover,
+.navbar-weijinsuo .navbar-nav > li > a:focus {
+    color: #333;
+    background-color: transparent;
+    border-bottom: 2px solid #e92322;
+}
+
+.navbar-weijinsuo .navbar-nav > .active > a,
+.navbar-weijinsuo .navbar-nav > .active > a:hover,
+.navbar-weijinsuo .navbar-nav > .active > a:focus {
+    color: #555;
+    background-color: transparent;
+    border-bottom: 2px solid #e92322;
+}
+
+.navbar-weijinsuo .navbar-nav > .disabled > a,
+.navbar-weijinsuo .navbar-nav > .disabled > a:hover,
+.navbar-weijinsuo .navbar-nav > .disabled > a:focus {
+    color: #ccc;
+    background-color: transparent;
+}
+
+.navbar-weijinsuo .navbar-toggle {
+    border-color: #ddd;
+    margin-top: 23px;
+}
+
+.navbar-weijinsuo .navbar-toggle:hover,
+.navbar-weijinsuo .navbar-toggle:focus {
+    background-color: #ddd;
+}
+
+.navbar-weijinsuo .navbar-toggle .icon-bar {
+    background-color: #888;
+}
+
+.navbar-weijinsuo .navbar-collapse,
+.navbar-weijinsuo .navbar-form {
+    border-color: #e7e7e7;
+}
+
+.navbar-weijinsuo .navbar-nav > .open > a,
+.navbar-weijinsuo .navbar-nav > .open > a:hover,
+.navbar-weijinsuo .navbar-nav > .open > a:focus {
+    color: #555;
+    background-color: #e7e7e7;
+}
+
+@media (max-width: 767px) {
+    .navbar-weijinsuo .navbar-nav .open .dropdown-menu > li > a {
+        color: #777;
+    }
+
+    .navbar-weijinsuo .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-weijinsuo .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #333;
+        background-color: transparent;
+    }
+
+    .navbar-weijinsuo .navbar-nav .open .dropdown-menu > .active > a,
+    .navbar-weijinsuo .navbar-nav .open .dropdown-menu > .active > a:hover,
+    .navbar-weijinsuo .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #555;
+        background-color: #e7e7e7;
+    }
+
+    .navbar-weijinsuo .navbar-nav .open .dropdown-menu > .disabled > a,
+    .navbar-weijinsuo .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+    .navbar-weijinsuo .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+        color: #ccc;
+        background-color: transparent;
+    }
+}
+
+.navbar-weijinsuo .navbar-link {
+    color: #777;
+}
+
+.navbar-weijinsuo .navbar-link:hover {
+    color: #333;
+}
+
+.navbar-weijinsuo .btn-link {
+    color: #777;
+}
+
+.navbar-weijinsuo .btn-link:hover,
+.navbar-weijinsuo .btn-link:focus {
+    color: #333;
+}
+
+.navbar-weijinsuo .btn-link[disabled]:hover,
+fieldset[disabled] .navbar-weijinsuo .btn-link:hover,
+.navbar-weijinsuo .btn-link[disabled]:focus,
+fieldset[disabled] .navbar-weijinsuo .btn-link:focus {
+    color: #ccc;
+}

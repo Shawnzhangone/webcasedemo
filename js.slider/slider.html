@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>原生js轮播图</title>
+    <link rel="shortcut icon" href="http://www.amxzhang.com/zxicon.icon.png">
+    <link rel="stylesheet" href="../basis.css">
+    <style>
+        
+        .title{
+            margin:60px;
+        }
+
+        
+        img{
+            vertical-align: top;}
+        ul,ol {
+            list-style:none;}
+        .box {
+            width: 500px;
+            height: 200px;
+            border: 1px solid black;
+            margin: 30px auto;
+            position: relative;
+        }
+        .screen {
+            width: 500px;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        .screen ul {
+            position: absolute;
+            width: 3000px;
+            top: 0;
+            left: 0;
+        }
+        .screen li {
+            float: left;
+            width: 500px;
+            height: 200px;
+        }
+        .box ol {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            line-height: 20px;
+        }
+        .box ol li {
+            width: 20px;
+            height: 20px;
+            float: left;
+            margin-right: 5px;
+            text-align: center;
+            background-color: #ffffff;
+            cursor: pointer;
+        }
+        .box ol li.current {
+            background: yellow;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="">返回</a></li>
+            <li><a href="http://www.amxzhang.com/">首页</a></li>
+        </ul>                   
+    </nav>
+<div class="title">
+    <h1>原生js实现简易轮播图</h1>
+</div>
+<div class="box" id="box">
+<div class="screen">
+    <ul id="ul">
+        <li><img src="images/1.jpg" alt=""></li>
+        <li><img src="images/2.jpg" alt=""></li>
+        <li><img src="images/3.jpg" alt=""></li>
+        <li><img src="images/4.jpg" alt=""></li>
+        <li><img src="images/5.jpg" alt=""></li>
+    </ul>
+</div>
+</div>
+
+</body>
+</html>
+
+
+<script>
+    function animation(obj,target,step) {
+        clearInterval(obj.timer);
+        var step = obj.offsetLeft < target ? step : -step;
+        obj.timer = setInterval(function () {
+            var distance = obj.offsetLeft - target;
+            obj.style.left = obj.offsetLeft + step+"px";
+            if(Math.abs(distance) < Math.abs(step)){
+                clearInterval(obj.timer);
+                obj.style.left = target+"px";
+            }
+        },10)
+    }
+    function $(id) {
+        return document.getElementById(id);
+    }
+        var box = $("box");
+        var ul = $("ul");
+        var ulLis = ul.children;
+        //动态生成ol li
+        var ol = document.createElement("ol");
+        box.appendChild(ol);
+        for(var i = 0; i < ulLis.length; i++){
+            var li = document.createElement("li");
+            ol.appendChild(li);
+            li.innerHTML = i+1;
+        }
+        ol.children[0].className = "current";
+        //无缝滚动克隆第一张到最后
+        ul.appendChild(ul.children[0].cloneNode(true));
+
+        var olLis = ol.children;
+        for (var i = 0; i < olLis.length; i++){
+            olLis[i].index = i;
+            olLis[i].onmouseover = function () {
+                for(var j = 0; j < olLis.length; j ++){
+                    olLis[j].className = "";
+                }
+                this.className = "current";
+                animation(ul,-this.index*500,20);
+                square = key =this.index;
+            }
+        }
+        var timer = null;
+        var key = 0, square = 0;
+        timer = setInterval(autoplay,5000);
+        function autoplay() {
+            key++;
+            if(key > ulLis.length - 1){
+                ul.style.left = 0;
+                key = 1;
+            }
+            animation(ul,-key*500,20);
+            square++;
+            if(square > olLis.length - 1){
+                square = 0;
+            }
+            for(var i = 0; i < olLis.length; i++){
+                olLis[i].className = "";
+            }
+            olLis[square].className = "current";
+        }
+        box.onmouseover = function () {
+            clearInterval(timer);
+        };
+        box.onmouseout = function () {
+            timer = setInterval(autoplay,5000);
+        }
+</script>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>纯js时钟</title>
+    <link rel="shortcut icon" href="http://www.amxzhang.com/zxicon.icon.png">
+    <style>
+
+    h1{
+           font: 500 22px/60px "Microsoft Yahei";
+        }
+    ul{
+      list-style: none;
+    }
+    li {
+      float: left;
+    }
+    a {
+      text-decoration: none;
+    }
+    nav li a {
+        color: #000;
+        display: inline-block;
+        font-size: 16px;
+        background-color: #e92322;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin: 4px 20px 0 0;
+    }
+
+        .clock {
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+            background: url(images/clock.jpg) no-repeat;
+            position: relative;
+        }
+        .clock div {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .h  {
+            background: url(images/hour.png) no-repeat center center;
+        }
+        .m  {
+            background: url(images/minute.png) no-repeat center center;
+
+        }
+        .s  {
+            background: url(images/second.png) no-repeat center center;
+        }
+        .clock .time {
+            width: 80px;
+            height: 40px;
+            position: absolute;
+            left: 264px;
+            top: 382px;
+        }
+        .time p {
+            text-align: center;
+            font: 18px "华文行楷";
+            text-indent: 0;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            function $(id) {
+                return document.getElementById(id);
+            }
+
+            setInterval(function () {
+                var date = new Date();
+
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                var day = date.getDate();
+                month < 10 ? month = "0"+month : month;
+                day < 10 ? day = "0"+day : day;
+                $("date").innerHTML = year+"."+month+"."+day;
+
+                var weak = date.getDay();
+                var warr = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+                $("weak").innerHTML = warr[weak];
+
+                var ms = date.getMilliseconds();
+                var s = date.getSeconds() + ms/1000;
+                var m = date.getMinutes() + s/60;
+                var h = date.getHours()%12 + m/60;
+
+                $("second").style.webkitTransform = "rotate("+s*6+"deg)";
+                $("minute").style.webkitTransform = "rotate("+m*6+"deg)";
+                $("hour").style.webkitTransform = "rotate("+h*30+"deg)";
+
+            },1000)
+        }
+    </script>
+</head>
+
+<body>
+<nav>
+    <ul>
+        <li><a href="http://www.amxzhang.com/casewatch/">返回</a></li>
+        <li><a href="http://www.amxzhang.com/">首页</a></li>
+    </ul>
+</nav>
+<div class="title container">
+    <h1>原生js实现时钟</h1>
+</div>
+
+<div class="clock">
+    <div class="h" id="hour"></div>
+    <div class="m" id="minute"></div>
+    <div class="s" id="second"></div>
+    <div class="time">
+        <p id="date"></p>
+        <p id="weak"></p>
+    </div>
+</div>
+
+</body>
+</html>

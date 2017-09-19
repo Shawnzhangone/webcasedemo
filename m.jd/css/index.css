@@ -1,0 +1,247 @@
+body {
+    background: #f5f5f5;
+
+}
+.jd-layout {
+    min-width: 300px;
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+
+}
+/*头部*/
+.jd-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 40px;
+    width: 100%;
+    z-index: 999;
+}
+.jd-header .jd-header-box {
+    min-width: 300px;
+    max-width: 640px;
+    margin:0 auto;
+    position: relative;
+    height:40px;
+    background: rgba(201,21,35,0);
+}
+.jd-header-box .icon-logo {
+    width: 60px;
+    height: 36px;
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    background-position: 0 -103px;
+}
+.jd-header-box form {
+    width: 100%;
+    height: 40px;
+    padding:0 60px 0 75px;
+    line-height: 40px;
+}
+
+.jd-header-box input {
+    width: 100%;
+    height: 30px;
+    border-radius: 15px;
+    padding-left: 35px;
+}
+
+.jd-header-box .login {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+.jd-header-box .icon-search {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 11px;
+    left: 85px;
+    background-position: -60px -109px;
+}
+
+/*轮播图*/
+.jd-banner {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.jd-banner ul:first-child {
+    width: 800%;
+}
+.jd-banner ul:first-child li {
+    width: 12.5%;
+    float: left;
+}
+.jd-banner ul:first-child li img {
+    width: 100%;
+    display: block;
+}
+.jd-banner ul:last-child {
+    width: 118px;
+    height: 6px;
+    position: absolute;
+    left: 50%;
+    margin-left:-59px;
+    bottom: 10px;
+}
+.jd-banner ul:last-child li {
+    width: 6px;
+    height: 6px;
+    border: 1px solid #FFFFFF;
+    border-radius: 3px;
+    float: left;
+    margin-left:10px;
+}
+.jd-banner ul:last-child li:first-child {
+    margin-left: 0;
+}
+.jd-banner ul:last-child li.now {
+    background: #FFFFFF;
+}
+
+/*导航栏*/
+.jd-nav {
+    width: 100%;
+    height: 180px;
+    padding-top: 20px;
+    background: #FFFFFF;
+}
+.jd-nav ul li {
+    float: left;
+    width: 25%;
+    height: 69px;
+    margin-top: 5px;
+}
+.jd-nav ul li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.jd-nav ul li a img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+}
+.jd-nav ul li a p {
+    font-size: 12px;
+    color: #666;
+    line-height: 24px;
+}
+
+/*产品*/
+.jd-product {
+    margin: 0 5px;
+}
+.jd-product-box {
+    width: 100%;
+    margin-top: 8px;
+    box-shadow: 0 0 1px 1px #e0e0e0;
+    background: #FFFFFF;
+}
+.product-top {
+    width: 100%;
+    height: 36px;
+    padding: 8px 8px;
+
+}
+
+.product-top .icon-sk {
+    width: 16px;
+    height: 20px;
+    float: left;
+    background: url("../images/seckill-icon.png") no-repeat;
+    background-size: 16px 20px;
+    display: block;
+    margin-right: 8px;
+}
+.product-top  .product-title:first-child {
+    color: #333;
+    margin-left: 12px;
+}
+.product-top  .product-title {
+    font-size: 15px;
+    color: #d8505c;
+    font-weight:inherit;
+    float: left;
+    margin-right: 8px;
+    border: 0;
+    position: relative;
+}
+.product-top  .product-title span {
+    position: absolute;
+    top: 4px;
+    left: -8px;
+    float: left;
+    width: 3px;
+    height: 12px;
+    background: #e92322;
+}
+.product-top .sk-time {
+    float: left;
+}
+.product-top .sk-time .sk-num {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    background: #333;
+    color: #FFFFFF;
+}
+.jd-product-box .sk-right {
+    float: right;
+}
+.jd-product-box ul {
+    width: 100%;
+
+}
+.jd-product .jd-product-box:first-child ul {
+    padding: 10px 0;
+}
+.jd-product-box ul li {
+    width: 33.33333%;
+    float: left;
+    text-align: center;
+
+}
+.jd-product-box ul li a {
+    width: 100%;
+}
+.jd-product-box ul li a .img-bor{
+    border-right: 1px solid #e0e0e0;
+}
+.jd-product-box ul li:last-child a .img-bor {
+    border-right: 0;
+}
+.jd-product-box .ul-sk li a img {
+    width: 64%;
+    display: block;
+    margin: 0 auto;
+}
+.jd-product-box ul li p {
+    font-size: 13px;
+    color: #d8505c;
+    margin-top: 3px;
+}
+.jd-product-box ul li p.old-price {
+    font-size: 12px;
+    color: #666666;
+    text-decoration: line-through;
+}
+.jd-product .jd-product-box:not(:first-child) ul li {
+    width: 50%;
+}
+.jd-product .jd-product-box:not(:first-child) ul li a {
+    width: 100%
+}
+.jd-product .jd-product-box:not(:first-child) ul li a img {
+    width: 100%;
+    display: inline-block;
+}
